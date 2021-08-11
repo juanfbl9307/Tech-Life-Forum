@@ -1,0 +1,209 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This is a forum about technologie, all minds are welcome. Also is a project from a Jedi and his Padawan.",
+      "version": "1.0.0",
+      "title": "TechLife Forum",
+      "contact": {
+        "email": "juanfbl9307@gmail.com"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "user",
+        "description": "Everything about users"
+      },
+      {
+        "name": "categories",
+        "description": "Everything about categories"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/user": {
+        "post": {
+          "tags": [
+            "user"
+          ],
+          "summary": "Create user",
+          "description": "Anyone can sign in all will be created as Poster",
+          "operationId": "UserController.createPoster",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Created user object",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/admin/user": {
+        "post": {
+          "tags": [
+            "user"
+          ],
+          "summary": "Create user and asign role",
+          "description": "Only with an access of admin you can create an admin",
+          "operationId": "UserController.create",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "List of user object",
+              "required": true,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/admin/categories": {
+        "post": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Only admin role can create and modify the categories",
+          "description": "",
+          "operationId": "CategorieController.create",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "List of user object",
+              "required": true,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Category"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/categories/all": {
+        "get": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Take all the categories created",
+          "description": "",
+          "operationId": "CategorieController.getAll",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Category"
+              }
+            }
+          }
+        }
+      },
+      "/user/all": {
+        "get": {
+          "tags": [
+            "user"
+          ],
+          "summary": "Get all the users created",
+          "description": "",
+          "operationId": "UserController.getAll",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          }
+        }
+      }
+    },
+    "securityDefinitions": {
+      "petstore_auth": {
+        "type": "oauth2",
+        "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+        "flow": "implicit",
+        "scopes": {
+          "write:pets": "modify pets in your account",
+          "read:pets": "read your pets"
+        }
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    "definitions": {
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "externalDocs": {
+      "description": "Find out more about Swagger",
+      "url": "http://swagger.io"
+    }
+  }
