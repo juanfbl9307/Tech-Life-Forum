@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: './environments/.env' });
 
 const { NODE_ENV, PORT, CORS, DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, MYSQL_DATABASE, MYSQL_HOST, MYSQL_PASSWORD, MYSQL_USER } = process.env;
 
@@ -16,10 +16,10 @@ const security = {
 }
 
 const mysql = {
-    host: MYSQL_HOST || 'remotemysql.com',
-    user: MYSQL_USER || "P1NY0s1oYa",
-    password: MYSQL_PASSWORD || "uz9lvGYkFL",
-    database: MYSQL_DATABASE || "P1NY0s1oYa",
+    host: MYSQL_HOST,
+    user: MYSQL_USER,
+    password: MYSQL_PASSWORD,
+    database: MYSQL_DATABASE,
 
 
 }
